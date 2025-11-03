@@ -1,0 +1,29 @@
+{
+    "title": "Containeres",
+    "containers": [
+        {
+            "title": "Container1",
+            "type": "stock",
+            "info": "Supermercado",
+            "alert": false
+        },
+        {
+            "title": "Container2",
+            "type": "transport",
+            "info": "Amazon",
+            "alert": true
+        },
+        {
+            "title": "Container3",
+            "type": "transport",
+            "info": "Navio",
+            "alert": false
+        },
+        {
+            "title": "Container4",
+            "type": "stock",
+            "info": "Adega",
+            "alert": true
+        }
+    ]
+}

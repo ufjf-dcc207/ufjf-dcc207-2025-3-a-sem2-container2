@@ -1,0 +1,25 @@
+{
+    "title": "Materiais do Container1",
+    "materials": [
+        {
+            "title": "Material1",
+            "amount": 30,
+            "minimumStock": 20
+        },
+        {
+            "title": "Material2",
+            "amount": 10,
+            "minimumStock": 20
+        },
+        {
+            "title": "Material3",
+            "amount": 25,
+            "minimumStock": 20
+        },
+        {
+            "title": "Material4",
+            "amount": 12,
+            "minimumStock": 20
+        }
+    ]
+}
