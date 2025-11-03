@@ -1,3 +1,5 @@
+import { Button } from "./Button";
+
 export type MaterialType = {
   title: string,
   amount: number,
@@ -17,12 +19,8 @@ export function Material({ material }: MaterialProps) {
         <td className="col-3 justify-content-center">{material.minimumStock}</td>
         <td>
             <div>
-                <button className="ml-2 btn btn-dark float-right">
-                Quantidade
-                </button>
-                <button className=" btn btn-primary float-right">
-                Visualizar
-                </button>
+              <Button button={{url: "/", type: "link", buttonName: "Quantidade", style: "ml-2 btn btn-dark float-right"}}></Button>
+              <Button button={{url: "/", type: "link", buttonName: "Visualizar", style: "btn btn-primary float-right"}}></Button>
             </div>
         </td>
     </tr>

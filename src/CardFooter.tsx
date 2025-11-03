@@ -1,13 +1,11 @@
 type CardFooterProps = {
-    hasConfirmButton: boolean
-    hasReturnButton: boolean
+    children?: React.ReactNode
 }
 
-export function CardFooter({hasConfirmButton, hasReturnButton} : CardFooterProps) {
+export function CardFooter({children} : CardFooterProps) {
     return (
         <div className="card-footer">
-            {hasConfirmButton && <button className="btn btn-primary float-right">Confirmar</button>}
-            {hasReturnButton && <button className="btn btn-dark float-right">Voltar</button>}
+            {children}
         </div>
     );
 }

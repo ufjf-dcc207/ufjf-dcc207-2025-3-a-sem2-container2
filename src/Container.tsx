@@ -1,4 +1,8 @@
+import { Button } from "./Button.tsx"
 import { Card } from "./Card.tsx"
+import { CardBody } from "./CardBody.tsx"
+import { CardFooter } from "./CardFooter.tsx"
+import { CardHeader } from "./CardHeader.tsx"
 
 export type ContainerType = {
   title: string,
@@ -14,7 +18,9 @@ type ContainerProps = {
 export function Container({ container }: ContainerProps) {
   return (
     <Card containerCard={true} containerType={container.type}>
-      <div className="card-body">
+      <CardHeader title={container.title}></CardHeader>
+      
+      <CardBody>
         <h2>
           {container.info}
         </h2>
@@ -22,16 +28,12 @@ export function Container({ container }: ContainerProps) {
           {container.alert && container.type == 'transport' ? "A entrega está atrasada" : 
             container.alert && container.type == 'stock' ? "Este estoque precisa de reposição" : "Não existem problemas com o container"}
         </h3>
-      </div>
+      </CardBody>
 
-      <div className="card-footer">
-        <button className="ml-2 btn btn-danger float-right">
-          Excluir
-        </button>
-        <button className=" btn btn-primary float-right">
-          Visualizar
-        </button>
-      </div>
+      <CardFooter>
+        <Button button={{form: "form", type: "form", buttonName: "Excluir", style: "btn btn-danger float-right"}} ></Button>
+        <Button button={{url: "/", type: "link", buttonName: "Visualizar", style: "btn btn-primary float-right"}} ></Button>
+      </CardFooter>
     </Card>
   );
 }

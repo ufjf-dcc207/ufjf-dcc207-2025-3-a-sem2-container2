@@ -3,6 +3,9 @@ import { Card } from "./Card.tsx"
 import type { MaterialType } from "./Material.tsx"
 import { Material } from "./Material.tsx"
 import { CardFooter } from "./CardFooter.tsx"
+import { Button } from "./Button.tsx"
+import { Table } from "./Table.tsx"
+import { CardBody } from "./CardBody.tsx"
 
 export type ContainerMaterialBoardType = {
   title: string,
@@ -17,28 +20,20 @@ export function ContainerMaterialBoard({ containerMaterialBoard }: ContainerMate
   return (
     <div className='row'>
       <Card containerCard={false}>
-        <CardHeader hasAddButton={true} url="/" title={containerMaterialBoard.title}></CardHeader>  
-        <div className="card-body row d-flex justify-content-center m-3">
-            <div className="table-responsive">
-                <table  id="example" className="w-100 table table-hover dataTable table-striped">
-                    <thead className="">
-                        <tr>
-                            <th>Nome</th>
-                            <th>Quantidade</th>
-                            <th>Estoque mínimo</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {containerMaterialBoard.materials.map((material) => {
-                            return <Material key={material.title} material={material}/>
-                        })}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <CardFooter hasConfirmButton={false} hasReturnButton={true} ></CardFooter>
+        <CardHeader title={containerMaterialBoard.title}>
+          <Button button={{url: "/", type: "link", buttonName: "Adicionar", style: "btn btn-dark icone-add-table"}} ></Button>
+        </CardHeader>
+        <CardBody style="row d-flex justify-content-center m-3">
+          <Table table={{ headers: ["Nome", "Quantidade", "Estoque mínimo"], hasActions: true }}>
+            {containerMaterialBoard.materials.map((material) => {
+                return <Material key={material.title} material={material}/>
+            })}
+          </Table>
+        </CardBody>
+        <CardFooter>
+          <Button button={{url: "/", type: "link", buttonName: "Voltar", style: "btn btn-dark icone-add-table"}} ></Button>
+        </CardFooter>
       </Card>
-    </div>   
+    </div>
   );
 }
