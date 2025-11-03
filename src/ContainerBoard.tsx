@@ -20,9 +20,9 @@ export function ContainerBoard({ containerBoard }: ContainerBoardProps) {
     <div className='row'>
       <Card containerCard={false}>
         <CardHeader title={containerBoard.title}>
-          <Button button={{url: "/", type: "link", buttonName: "Adicionar", style: "btn btn-dark icone-add-table"}} ></Button>
+          <Button button={{url: "/", type: "link", buttonName: "Adicionar", customStyle: "btn btn-dark icone-add-table"}} ></Button>
         </CardHeader>     
-        <CardBody style="row d-flex justify-content-center">
+        <CardBody customStyle="row d-flex justify-content-center">
           {containerBoard.containers.map((container) => {
               return <Container key={container.title} container={container}/>
           })}

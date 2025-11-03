@@ -31,8 +31,8 @@ export function Container({ container }: ContainerProps) {
       </CardBody>
 
       <CardFooter>
-        <Button button={{form: "form", type: "form", buttonName: "Excluir", style: "btn btn-danger float-right"}} ></Button>
-        <Button button={{url: "/", type: "link", buttonName: "Visualizar", style: "btn btn-primary float-right"}} ></Button>
+        <Button button={{form: "form", type: "form", buttonName: "Excluir", customStyle: "btn btn-danger float-right"}} ></Button>
+        <Button button={{url: "/", type: "link", buttonName: "Visualizar", customStyle: "btn btn-primary float-right"}} ></Button>
       </CardFooter>
     </Card>
   );

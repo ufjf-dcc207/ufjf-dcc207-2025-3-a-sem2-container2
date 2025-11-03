@@ -21,17 +21,17 @@ export function ContainerMaterialBoard({ containerMaterialBoard }: ContainerMate
     <div className='row'>
       <Card containerCard={false}>
         <CardHeader title={containerMaterialBoard.title}>
-          <Button button={{url: "/", type: "link", buttonName: "Adicionar", style: "btn btn-dark icone-add-table"}} ></Button>
+          <Button button={{url: "/", type: "link", buttonName: "Adicionar", customStyle: "btn btn-dark icone-add-table"}} ></Button>
         </CardHeader>
-        <CardBody style="row d-flex justify-content-center m-3">
-          <Table table={{ headers: ["Nome", "Quantidade", "Estoque mínimo"], hasActions: true }}>
+        <CardBody customStyle="row d-flex justify-content-center m-3">
+          <Table table={{ headers: ["Nome", "Quantidade", "Estoque mínimo", "Data limite de reestocagem"], hasActions: true }}>
             {containerMaterialBoard.materials.map((material) => {
                 return <Material key={material.title} material={material}/>
             })}
           </Table>
         </CardBody>
         <CardFooter>
-          <Button button={{url: "/", type: "link", buttonName: "Voltar", style: "btn btn-dark icone-add-table"}} ></Button>
+          <Button button={{url: "/", type: "link", buttonName: "Voltar", customStyle: "btn btn-dark icone-add-table"}} ></Button>
         </CardFooter>
       </Card>
     </div>

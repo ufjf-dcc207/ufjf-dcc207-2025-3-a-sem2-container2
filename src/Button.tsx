@@ -3,7 +3,7 @@ export type ButtonType = {
     form?: string
     type: string
     buttonName: string
-    style: string
+    customStyle: string
 }
 
 type ButtonProps = {
@@ -16,13 +16,13 @@ export function Button({ button } : ButtonProps) {
             <div className="input-group input-group-sm">
                 { button.type === "link" &&
                     <a href={button.url}>
-                        <button type="button" className={button.style}>
+                        <button type="button" className={button.customStyle}>
                             <b>{button.buttonName}</b>
                         </button>
                     </a>
                 }
                 { button.type === "form" &&
-                    <button type="submit" form={button.form} className={button.style}>
+                    <button type="submit" form={button.form} className={button.customStyle}>
                         <b>{button.buttonName}</b>
                     </button>
                 }
