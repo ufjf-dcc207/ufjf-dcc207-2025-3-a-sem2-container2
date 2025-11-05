@@ -14,9 +14,10 @@ export type ContainerMaterialBoardType = {
 
 type ContainerMaterialBoardProps = {
   containerMaterialBoard: ContainerMaterialBoardType
+  tableHeaders: Array<string>
 }
 
-export function ContainerMaterialBoard({ containerMaterialBoard }: ContainerMaterialBoardProps) {
+export function ContainerMaterialBoard({ containerMaterialBoard, tableHeaders }: ContainerMaterialBoardProps) {
   return (
     <div className='row'>
       <Card containerCard={false}>
@@ -24,7 +25,7 @@ export function ContainerMaterialBoard({ containerMaterialBoard }: ContainerMate
           <Button button={{url: "/", type: "link", buttonName: "Adicionar", customStyle: "btn btn-dark icone-add-table"}} ></Button>
         </CardHeader>
         <CardBody customStyle="row d-flex justify-content-center m-3">
-          <Table table={{ headers: ["Nome", "Quantidade", "Estoque mínimo", "Data limite de reestocagem"], hasActions: true }}>
+          <Table table={{ headers: tableHeaders, hasActions: true }}>
             {containerMaterialBoard.materials.map((material) => {
                 return <Material key={material.title} material={material}/>
             })}

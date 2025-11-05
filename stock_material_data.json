@@ -10,7 +10,7 @@
             "title": "Material2",
             "amount": 10,
             "minimumStock": 20,
-            "restockLimit": "2025-10-11T08:00:00-03:00"
+            "limitDate": "2025-10-11T08:00:00-03:00"
         },
         {
             "title": "Material3",
@@ -21,7 +21,7 @@
             "title": "Material4",
             "amount": 12,
             "minimumStock": 20,
-            "restockLimit": "2025-10-11T08:00:00-03:00"
+            "limitDate": "2025-10-11T08:00:00-03:00"
         }
     ]
 }
