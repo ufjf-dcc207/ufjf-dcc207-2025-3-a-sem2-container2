@@ -9,8 +9,9 @@ function App() {
   return (
     <div>
       <ContainerBoard containerBoard={container_data}></ContainerBoard>
-      <ContainerForm container={container_data.containers[0]}></ContainerForm>
-      <ContainerForm container={container_data.containers[1]}></ContainerForm>
+      {container_data.containers.map((container) => {
+          return <ContainerForm key={container.title} container={container}/>
+      })}
     </div>
   );
 }
