@@ -6,8 +6,8 @@ type CardHeaderProps = {
 export function CardHeader({title, children} : CardHeaderProps) {
     return (
         <div className="card-header">
-            <h3 className="card-title title-form">{title}</h3>
             {children}
+            <h3 className="card-title title-form my-3">{title}</h3>
         </div> 
     );
 }

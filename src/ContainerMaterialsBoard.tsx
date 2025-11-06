@@ -2,39 +2,28 @@ import { CardHeader } from "./CardHeader.tsx"
 import { Card } from "./Card.tsx"
 import type { MaterialType } from "./Material.tsx"
 import { Material } from "./Material.tsx"
-import { CardFooter } from "./CardFooter.tsx"
 import { Button } from "./Button.tsx"
 import { Table } from "./Table.tsx"
 import { CardBody } from "./CardBody.tsx"
 
-export type ContainerMaterialBoardType = {
-  title: string,
-  materials: Array<MaterialType>
-}
-
 type ContainerMaterialBoardProps = {
-  containerMaterialBoard: ContainerMaterialBoardType
+  materials?: Array<MaterialType>
   tableHeaders: Array<string>
 }
 
-export function ContainerMaterialBoard({ containerMaterialBoard, tableHeaders }: ContainerMaterialBoardProps) {
+export function ContainerMaterialBoard({ materials, tableHeaders }: ContainerMaterialBoardProps) {
   return (
-    <div className='row'>
-      <Card containerCard={false}>
-        <CardHeader title={containerMaterialBoard.title}>
-          <Button button={{url: "/", type: "link", buttonName: "Adicionar", customStyle: "btn btn-dark icone-add-table"}} ></Button>
-        </CardHeader>
-        <CardBody customStyle="row d-flex justify-content-center m-3">
-          <Table table={{ headers: tableHeaders, hasActions: true }}>
-            {containerMaterialBoard.materials.map((material) => {
-                return <Material key={material.title} material={material}/>
-            })}
-          </Table>
-        </CardBody>
-        <CardFooter>
-          <Button button={{url: "/", type: "link", buttonName: "Voltar", customStyle: "btn btn-dark icone-add-table"}} ></Button>
-        </CardFooter>
-      </Card>
-    </div>
+    <Card containerCard={false} customStyle="col-12 mt-5">
+      <CardHeader title="Materiais">
+        <Button button={{url: "/", type: "link", buttonName: "Adicionar", customStyle: "btn btn-dark icone-add-table"}} ></Button>
+      </CardHeader>
+      <CardBody customStyle="d-flex justify-content-center m-3">
+        <Table table={{ headers: tableHeaders, hasActions: true }}>
+          {materials ? materials.map((material) => {
+              return <Material key={material.title} material={material}/>
+          }) : ""}
+        </Table>
+      </CardBody>
+    </Card>
   );
 }

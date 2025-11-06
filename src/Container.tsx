@@ -3,12 +3,14 @@ import { Card } from "./Card.tsx"
 import { CardBody } from "./CardBody.tsx"
 import { CardFooter } from "./CardFooter.tsx"
 import { CardHeader } from "./CardHeader.tsx"
+import type { MaterialType } from "./Material.tsx"
 
 export type ContainerType = {
   title: string,
   type: string,
   info: string,
   alert: boolean
+  materials?: Array<MaterialType>
 }
 
 type ContainerProps = {
@@ -17,17 +19,20 @@ type ContainerProps = {
 
 export function Container({ container }: ContainerProps) {
   return (
-    <Card containerCard={true} containerType={container.type}>
-      <CardHeader title={container.title}></CardHeader>
-      
+    <Card containerCard={true}>
+      <CardHeader title={container.title}>
+        {container.type === 'stock' && <span className="float-left fa-2x mr-2 mt-1">📦</span>}
+        {container.type === 'transport' && <span className="float-left fa-2x mr-2">🚢</span>}
+      </CardHeader>
+
       <CardBody>
-        <h2>
+        <h4>
           {container.info}
-        </h2>
-        <h3 className={container.alert ? "text-danger" : "text-secondary"}>
+        </h4>
+        <h5 className={container.alert ? "text-danger" : "text-secondary"}>
           {container.alert && container.type == 'transport' ? "A entrega está atrasada" : 
             container.alert && container.type == 'stock' ? "Este estoque precisa de reposição" : "Não existem problemas com o container"}
-        </h3>
+        </h5>
       </CardBody>
 
       <CardFooter>

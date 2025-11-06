@@ -2,7 +2,6 @@ import { CardHeader } from "./CardHeader.tsx"
 import { Card } from "./Card.tsx"
 import type { ContainerType } from "./Container.tsx"
 import { Container } from "./Container.tsx"
-import { CardFooter } from "./CardFooter.tsx"
 import { Button } from "./Button.tsx"
 import { CardBody } from "./CardBody.tsx"
 
@@ -27,7 +26,6 @@ export function ContainerBoard({ containerBoard }: ContainerBoardProps) {
               return <Container key={container.title} container={container}/>
           })}
         </CardBody>
-        <CardFooter></CardFooter>
       </Card>
     </div>
   );

@@ -5,25 +5,73 @@
             "title": "Container1",
             "type": "stock",
             "info": "Supermercado",
-            "alert": false
+            "alert": false,
+            "materials": [
+                {
+                    "title": "Material1",
+                    "amount": 30,
+                    "minimumStock": 20
+                },
+                {
+                    "title": "Material2",
+                    "amount": 10,
+                    "minimumStock": 20,
+                    "limitDate": "2025-10-11T08:00:00-03:00"
+                }
+            ]
         },
         {
             "title": "Container2",
             "type": "transport",
             "info": "Amazon",
-            "alert": true
+            "alert": true,
+            "materials": [
+                {
+                    "title": "Material1",
+                    "amount": 30
+                },
+                {
+                    "title": "Material2",
+                    "amount": 10,
+                    "limitDate": "2025-10-11T08:00:00-03:00"
+                }
+            ]
         },
         {
             "title": "Container3",
             "type": "transport",
             "info": "Navio",
-            "alert": false
+            "alert": false,
+            "materials": [
+                {
+                    "title": "Material3",
+                    "amount": 25
+                },
+                {
+                    "title": "Material4",
+                    "amount": 12,
+                    "limitDate": "2025-10-11T08:00:00-03:00"
+                }
+            ]
         },
         {
             "title": "Container4",
             "type": "stock",
             "info": "Adega",
-            "alert": true
+            "alert": true,
+            "materials": [
+                {
+                    "title": "Material3",
+                    "amount": 25,
+                    "minimumStock": 20
+                },
+                {
+                    "title": "Material4",
+                    "amount": 12,
+                    "minimumStock": 20,
+                    "limitDate": "2025-10-11T08:00:00-03:00"
+                }
+            ]
         }
     ]
 }
