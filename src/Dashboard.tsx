@@ -15,7 +15,7 @@ type NavigationType = {
 
 function Dashboard({ container_data }: DashboardProps) {
   const [containersBoard, setContainersBoard] = useState<ContainerBoardType>(container_data)
-  const [navigation, setNavigation] = useState<NavigationType>({currentContainerId: undefined})
+  const [navigation, setNavigation] = useState<NavigationType>({currentContainerId: -1})
 
   function setCurrentContainer(containerId ?: number){
     const newNavigation = structuredClone(navigation);

@@ -36,6 +36,7 @@ export function ContainerForm({ container, handleChange, addMaterial, removeMate
                     </ContainerMaterialBoard>
                 </CardBody>
                 <CardFooter>
+                    <Button button={{url: "/", type: "link", buttonName: "Salvar", customStyle: "btn btn-primary icone-add-table"}} ></Button>
                     <Button button={{onClickFunction: () => setCurrentContainer(-1), type: "action", buttonName: "Voltar", customStyle: "btn btn-dark icone-add-table"}} ></Button>
                 </CardFooter>
             </Card>
