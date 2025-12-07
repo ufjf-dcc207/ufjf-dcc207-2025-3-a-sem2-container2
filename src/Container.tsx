@@ -10,12 +10,19 @@ export type ContainerType = {
   title: string,
   type: string,
   info: string,
-  alert: boolean
   materials?: Array<MaterialType>
 }
 
 type ContainerProps = {
   container: ContainerType
+}
+
+function containerStatus(container : ContainerType) {
+  if(container.type == "stock") {
+    return container.materials?.findIndex(material => material.amount < material.minimumStock) != -1
+  } else {
+    return container.materials?.findIndex(material => new Date(material.limitDate) < new Date()) != -1
+  }
 }
 
 export function Container({ container }: ContainerProps) {
@@ -30,9 +37,9 @@ export function Container({ container }: ContainerProps) {
         <h4>
           {container.info}
         </h4>
-        <h5 className={container.alert ? "text-danger" : "text-secondary"}>
-          {container.alert && container.type == 'transport' ? "A entrega está atrasada" : 
-            container.alert && container.type == 'stock' ? "Este estoque precisa de reposição" : "Não existem problemas com o container"}
+        <h5 className={containerStatus(container) ? "text-danger" : "text-secondary"}>
+          {containerStatus(container) && container.type == 'transport' ? "A entrega está atrasada" : 
+            containerStatus(container) && container.type == 'stock' ? "Este estoque precisa de reposição" : "Não existem problemas com o container"}
         </h5>
       </CardBody>
 

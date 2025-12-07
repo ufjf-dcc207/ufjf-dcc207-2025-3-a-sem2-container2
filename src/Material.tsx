@@ -12,24 +12,25 @@ export type MaterialType = {
 
 type MaterialProps = {
   material: MaterialType,
+  containerType: string,
   handleChange: any
 }
 
-export function Material({ material, handleChange }: MaterialProps) {
+export function Material({ material, containerType, handleChange }: MaterialProps) {
   return (
     <tr>
-        <td className={material.minimumStock ? "col-2" : "col-3"}>
+        <td className={containerType === "stock" ? "col-2" : "col-3"}>
           <CustomInput type={"text"} isSelect={false} inputCustomStyle="bg-transparent border-0" setName={"title"} setValue={material.title} handleChange={(e : any) => handleChange(e, material.id)}/>
         </td>
-        {!material.minimumStock ? 
-          <td className="col-3">
-            <CustomInput isSelect={false} type={"number"} inputCustomStyle="bg-transparent border-0" setName={"amount"} setValue={material.amount} handleChange={(e : any) => handleChange(e, material.id)}></CustomInput>
-          </td> : 
+        {containerType === "stock" && material.minimumStock ? 
           <td className="col-2">
             <CustomInput isSelect={false} type={"number"} inputCustomStyle={`bg-transparent border-0 ${material.amount < material.minimumStock ? 'text-danger' : ''}`} setName={"amount"} setValue={material.amount} handleChange={(e : any) => handleChange(e, material.id)}></CustomInput>
-          </td>
+          </td> :
+          <td className="col-3">
+            <CustomInput isSelect={false} type={"number"} inputCustomStyle="bg-transparent border-0" setName={"amount"} setValue={material.amount} handleChange={(e : any) => handleChange(e, material.id)}></CustomInput>
+          </td>  
         }
-        {material.minimumStock && 
+        {containerType === "stock" && 
           <td className="col-2 justify-content-center">
             <CustomInput isSelect={false} type={"number"} inputCustomStyle="bg-transparent border-0" setName={"minimumStock"} setValue={material.minimumStock} handleChange={(e : any) => handleChange(e, material.id)}></CustomInput>
           </td>

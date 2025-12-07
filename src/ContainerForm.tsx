@@ -26,7 +26,7 @@ export function ContainerForm({ container, handleChange } : ContainerFormType) {
                             {optionLabel: "Estoque", optionValue: "stock"}, {optionLabel: "Transporte", optionValue: "transport"}
                         ]
                     }/>
-                    <ContainerMaterialBoard materials={container.materials} handleChange={handleChange} 
+                    <ContainerMaterialBoard materials={container.materials} containerType={container.type} handleChange={handleChange} 
                         tableHeaders={container?.type === "stock" ? ["Nome", "Quantidade", "Estoque mínimo", "Data limite de reestocagem"] : 
                             ["Nome", "Quantidade", "Data de entrega"]
                         }>

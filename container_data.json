@@ -6,13 +6,13 @@
             "title": "Container1",
             "type": "stock",
             "info": "Supermercado",
-            "alert": false,
             "materials": [
                 {
                     "id": 0,
                     "title": "Material1",
                     "amount": 30,
-                    "minimumStock": 20
+                    "minimumStock": 20,
+                    "limitDate": "2025-10-11T08:00:00-03:00"
                 },
                 {
                     "id": 1,
@@ -28,12 +28,12 @@
             "title": "Container2",
             "type": "transport",
             "info": "Amazon",
-            "alert": true,
             "materials": [
                 {
                     "id": 0,
                     "title": "Material1",
-                    "amount": 30
+                    "amount": 30,
+                    "limitDate": "2025-10-11T08:00:00-03:00"
                 },
                 {
                     "id": 1,
@@ -48,12 +48,12 @@
             "title": "Container3",
             "type": "transport",
             "info": "Navio",
-            "alert": false,
             "materials": [
                 {
                     "id": 0,
                     "title": "Material3",
-                    "amount": 25
+                    "amount": 25,
+                    "limitDate": "2025-10-11T08:00:00-03:00"
                 },
                 {
                     "id": 1,
@@ -68,13 +68,13 @@
             "title": "Container4",
             "type": "stock",
             "info": "Adega",
-            "alert": true,
             "materials": [
                 {
                     "id": 0,
                     "title": "Material3",
                     "amount": 25,
-                    "minimumStock": 20
+                    "minimumStock": 20,
+                    "limitDate": "2025-10-11T08:00:00-03:00"
                 },
                 {
                     "id": 1,

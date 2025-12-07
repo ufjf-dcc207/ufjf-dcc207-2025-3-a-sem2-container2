@@ -3,22 +3,24 @@ import { ContainerForm } from './ContainerForm';
 import { useState } from 'react';
 import {type ContainerBoardType} from './ContainerBoard'
 
-
 type DashboardProps = {
   container_data: ContainerBoardType
 }
 
-
 function Dashboard({ container_data }: DashboardProps) {
-  const [containers, setContainers] = useState<ContainerBoardType>(container_data) 
+  const [containers, setContainers] = useState<ContainerBoardType>(container_data)
 
   function handleChange(e : any, containerId : number, materialId ?: number){
-    const { name, value } = e.target;
+    let { name, value } = e.target;
     const newContainers = structuredClone(containers);
     let containerIndex = newContainers.containers.findIndex(container => container.id == containerId);
     let containerToChange = newContainers.containers[containerIndex]
 
     if (materialId !== undefined){
+      if((name === "amount" || name === "minimumStock") && (typeof value === "string")) {
+          value = parseInt(value)
+      }
+      console.log(value)
       containerToChange.materials[materialId][name] = value
     } else {
       containerToChange[name] = value;
