@@ -11,11 +11,12 @@ export type ContainerType = {
   title: string,
   type: string,
   info: string,
-  materials?: Array<MaterialType>
+  materials: Array<MaterialType>
 }
 
 type ContainerProps = {
   container: ContainerType
+  removeContainer: any
 }
 
 function containerStatus(container : ContainerType) {
@@ -26,7 +27,7 @@ function containerStatus(container : ContainerType) {
   }
 }
 
-export function Container({ container }: ContainerProps) {
+export function Container({ container, removeContainer }: ContainerProps) {
   return (
     <Card containerCard={true}>
       <CardHeader title={container.title}>
@@ -45,7 +46,7 @@ export function Container({ container }: ContainerProps) {
       </CardBody>
 
       <CardFooter>
-        <Button button={{form: "form", type: "form", buttonName: "Excluir", customStyle: "btn btn-danger float-right"}} ></Button>
+        <Button button={{onClickFunction: () => removeContainer(container.id), type: "action", buttonName: "Excluir", customStyle: "btn btn-danger float-right"}} ></Button>
         <Button button={{url: "/", type: "link", buttonName: "Visualizar", customStyle: "btn btn-primary float-right"}} ></Button>
       </CardFooter>
     </Card>

@@ -74,13 +74,28 @@ function Dashboard({ container_data }: DashboardProps) {
     setContainers(newContainers);
   }
 
+  function removeContainer(containerId: number) {
+    const newContainers = structuredClone(containers);
+    newContainers.containers = newContainers.containers.filter(container => container.id != containerId)
+    setContainers(newContainers);
+  }
+
+  function removeMaterial(containerId: number, materialId: number) {
+    const newContainers = structuredClone(containers);
+    let containerIndex = newContainers.containers.findIndex(container => container.id == containerId);
+    let containerToChange = newContainers.containers[containerIndex]
+    containerToChange.materials = containerToChange.materials.filter(material => material.id != materialId)
+    setContainers(newContainers);
+  }
+
   return (
     <div>
-      <ContainerBoard addContainer={addContainer} containerBoard={containers}></ContainerBoard>
+      <ContainerBoard addContainer={addContainer} removeContainer={removeContainer} containerBoard={containers}></ContainerBoard>
       {containers.containers.map((container) => {
           const handleChangeClosure = (e : any, materialId ?: number) => handleChange(e, container.id, materialId)
           const addMaterialClosure = () => addMaterial(container.id)
-          return <ContainerForm key={container.id} container={container} handleChange={handleChangeClosure} addMaterial={addMaterialClosure}/>
+          const removeMaterialClosure = (materialId : number) => removeMaterial(container.id, materialId)
+          return <ContainerForm key={container.id} container={container} handleChange={handleChangeClosure} addMaterial={addMaterialClosure} removeMaterial={removeMaterialClosure}/>
       })}
     </div>
   );

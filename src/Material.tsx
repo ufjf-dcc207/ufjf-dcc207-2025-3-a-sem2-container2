@@ -14,9 +14,10 @@ type MaterialProps = {
   material: MaterialType,
   containerType: string,
   handleChange: any
+  removeMaterial: any
 }
 
-export function Material({ material, containerType, handleChange }: MaterialProps) {
+export function Material({ material, containerType, handleChange, removeMaterial }: MaterialProps) {
   return (
     <tr>
         <td className={containerType === "stock" ? "col-2" : "col-3"}>
@@ -40,7 +41,7 @@ export function Material({ material, containerType, handleChange }: MaterialProp
         </td>
         <td>
             <div>
-              <Button button={{url: "/", type: "link", buttonName: "Apagar", customStyle: "ml-2 btn btn-danger float-right"}}></Button>
+              <Button button={{type: "action", buttonName: "Apagar", customStyle: "ml-2 btn btn-danger float-right", onClickFunction: () => removeMaterial(material.id)}}></Button>
               <Button button={{url: "/", type: "link", buttonName: "Editar", customStyle: "btn btn-primary float-right"}}></Button>
             </div>
         </td>

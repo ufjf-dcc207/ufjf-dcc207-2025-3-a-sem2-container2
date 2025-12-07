@@ -15,9 +15,10 @@ export type ContainerBoardType = {
 type ContainerBoardProps = {
   containerBoard: ContainerBoardType,
   addContainer: any
+  removeContainer: any
 }
 
-export function ContainerBoard({ containerBoard, addContainer }: ContainerBoardProps) {
+export function ContainerBoard({ containerBoard, addContainer, removeContainer }: ContainerBoardProps) {
   return (
     <div className='row'>
       <Card containerCard={false}>
@@ -26,7 +27,7 @@ export function ContainerBoard({ containerBoard, addContainer }: ContainerBoardP
         </CardHeader>     
         <CardBody customStyle="row d-flex justify-content-center">
           {containerBoard.containers.map((container) => {
-              return <Container key={container.id} container={container}/>
+              return <Container key={container.id} removeContainer={removeContainer} container={container}/>
           })}
         </CardBody>
       </Card>
