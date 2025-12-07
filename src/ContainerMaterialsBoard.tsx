@@ -6,6 +6,7 @@ import { Button } from "./Button.tsx"
 import { Table } from "./Table.tsx"
 import { CardBody } from "./CardBody.tsx"
 
+
 type ContainerMaterialBoardProps = {
   materials?: Array<MaterialType>
   tableHeaders: Array<string>
@@ -21,6 +22,7 @@ export function ContainerMaterialBoard({ materials, tableHeaders, handleChange }
       <CardBody customStyle="d-flex justify-content-center m-3">
         <Table table={{ headers: tableHeaders, hasActions: true }}>
           {materials ? materials.map((material) => {
+
               return <Material key={material.id} material={material} handleChange={handleChange}/>
           }) : ""}
         </Table>

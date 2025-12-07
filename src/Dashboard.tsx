@@ -12,27 +12,27 @@ type DashboardProps = {
 function Dashboard({ container_data }: DashboardProps) {
   const [containers, setContainers] = useState<ContainerBoardType>(container_data) 
 
-  function changeTitle() {
-    const newContainers = structuredClone(containers);
-    newContainers.title = "teste"
-    setContainers(newContainers)
-  }
-
-  function handleChange(e : any, id : number, idMaterial = null){
+  function handleChange(e : any, containerId : number, materialId ?: number){
     const { name, value } = e.target;
-    let nameString = String(name)
     const newContainers = structuredClone(containers);
-    let containerIndex = newContainers.containers.findIndex(container => container.id == id);
-    newContainers.containers[containerIndex][nameString] = value;
+    let containerIndex = newContainers.containers.findIndex(container => container.id == containerId);
+    let containerToChange = newContainers.containers[containerIndex]
+
+    if (materialId !== undefined){
+      containerToChange.materials[materialId][name] = value
+    } else {
+      containerToChange[name] = value;
+    }
+
     setContainers(newContainers);
   };
 
   return (
     <div>
-      <button onClick={changeTitle}>teste</button>
       <ContainerBoard containerBoard={containers}></ContainerBoard>
-      {container_data.containers.map((container) => {
-          return <ContainerForm key={container.title} container={container} handleChange={handleChange}/>
+      {containers.containers.map((container) => {
+          const handleChangeClosure = (e : any, materialId ?: number) => handleChange(e, container.id, materialId)
+          return <ContainerForm key={container.id} container={container} handleChange={handleChangeClosure}/>
       })}
     </div>
   );

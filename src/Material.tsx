@@ -1,6 +1,7 @@
 import { Button } from "./Button";
 import { CustomInput } from "./CustomInput";
 
+
 export type MaterialType = {
   id: number,
   title: string,
@@ -11,30 +12,30 @@ export type MaterialType = {
 
 type MaterialProps = {
   material: MaterialType,
-  handleChange?: any
+  handleChange: any
 }
 
 export function Material({ material, handleChange }: MaterialProps) {
   return (
     <tr>
         <td className={material.minimumStock ? "col-2" : "col-3"}>
-          <CustomInput type={"text"} isSelect={false} inputCustomStyle="bg-transparent border-0" setName={"title"} setValue={material.title} onChangeFunction={handleChange}/>
+          <CustomInput type={"text"} isSelect={false} inputCustomStyle="bg-transparent border-0" setName={"title"} setValue={material.title} handleChange={(e : any) => handleChange(e, material.id)}/>
         </td>
         {!material.minimumStock ? 
           <td className="col-3">
-            <CustomInput isSelect={false} type={"number"} inputCustomStyle="bg-transparent border-0" setName={"amount"} setValue={material.amount} onChangeFunction={handleChange}></CustomInput>
+            <CustomInput isSelect={false} type={"number"} inputCustomStyle="bg-transparent border-0" setName={"amount"} setValue={material.amount} handleChange={(e : any) => handleChange(e, material.id)}></CustomInput>
           </td> : 
           <td className="col-2">
-            <CustomInput isSelect={false} type={"number"} inputCustomStyle={`bg-transparent border-0 ${material.amount < material.minimumStock ? 'text-danger' : ''}`} setName={"amount"} setValue={material.amount} onChangeFunction={handleChange}></CustomInput>
+            <CustomInput isSelect={false} type={"number"} inputCustomStyle={`bg-transparent border-0 ${material.amount < material.minimumStock ? 'text-danger' : ''}`} setName={"amount"} setValue={material.amount} handleChange={(e : any) => handleChange(e, material.id)}></CustomInput>
           </td>
         }
         {material.minimumStock && 
           <td className="col-2 justify-content-center">
-            <CustomInput isSelect={false} type={"number"} inputCustomStyle="bg-transparent border-0" setName={"minimumStock"} setValue={material.minimumStock} onChangeFunction={handleChange}></CustomInput>
+            <CustomInput isSelect={false} type={"number"} inputCustomStyle="bg-transparent border-0" setName={"minimumStock"} setValue={material.minimumStock} handleChange={(e : any) => handleChange(e, material.id)}></CustomInput>
           </td>
         }
         <td className="col-3">
-          <CustomInput isSelect={false} type={"text"} inputCustomStyle="bg-transparent border-0" setName={"limitDate"} setValue={material.limitDate ? new Date(material.limitDate).toLocaleString('pt-BR') : "-"} onChangeFunction={handleChange}></CustomInput>
+          <CustomInput isSelect={false} type={"text"} inputCustomStyle="bg-transparent border-0" setName={"limitDate"} setValue={material.limitDate ? new Date(material.limitDate).toLocaleString('pt-BR') : "-"} handleChange={(e : any) => handleChange(e, material.id)}></CustomInput>
         </td>
         <td>
             <div>
