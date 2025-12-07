@@ -7,6 +7,7 @@ import type { MaterialType } from "./Material.tsx"
 
 export type ContainerType = {
   id: number,
+  currentMaterialId: number,
   title: string,
   type: string,
   info: string,

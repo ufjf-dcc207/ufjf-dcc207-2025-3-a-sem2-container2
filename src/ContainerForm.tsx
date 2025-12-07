@@ -10,10 +10,11 @@ import { CustomInput } from "./CustomInput.tsx"
 
 type ContainerFormType = {
     container: ContainerType,
-    handleChange?: any
+    handleChange?: any,
+    addMaterial?: any
 }
 
-export function ContainerForm({ container, handleChange } : ContainerFormType) {
+export function ContainerForm({ container, handleChange, addMaterial } : ContainerFormType) {
     return (
         <div className='row'>
             <Card containerCard={false}>
@@ -26,7 +27,7 @@ export function ContainerForm({ container, handleChange } : ContainerFormType) {
                             {optionLabel: "Estoque", optionValue: "stock"}, {optionLabel: "Transporte", optionValue: "transport"}
                         ]
                     }/>
-                    <ContainerMaterialBoard materials={container.materials} containerType={container.type} handleChange={handleChange} 
+                    <ContainerMaterialBoard materials={container.materials} containerType={container.type} handleChange={handleChange} addMaterial={addMaterial}
                         tableHeaders={container?.type === "stock" ? ["Nome", "Quantidade", "Estoque mínimo", "Data limite de reestocagem"] : 
                             ["Nome", "Quantidade", "Data de entrega"]
                         }>

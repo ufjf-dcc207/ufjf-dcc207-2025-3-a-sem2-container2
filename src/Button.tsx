@@ -4,6 +4,7 @@ export type ButtonType = {
     type: string
     buttonName: string
     customStyle: string
+    onClickFunction?: any
 }
 
 type ButtonProps = {
@@ -22,7 +23,12 @@ export function Button({ button } : ButtonProps) {
                     </a>
                 }
                 { button.type === "form" &&
-                    <button type="submit" form={button.form} className={button.customStyle}>
+                    <button  type="submit" form={button.form} className={button.customStyle}>
+                        <b>{button.buttonName}</b>
+                    </button>
+                }
+                { button.type === "action" &&
+                    <button onClick={button?.onClickFunction} className={button.customStyle}>
                         <b>{button.buttonName}</b>
                     </button>
                 }

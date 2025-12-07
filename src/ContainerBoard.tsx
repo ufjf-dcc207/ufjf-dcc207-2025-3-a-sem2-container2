@@ -8,19 +8,21 @@ import { type ContainerType } from './Container';
 
 export type ContainerBoardType = {
     title: string,
+    currentId: number,
     containers: Array<ContainerType>
 }
 
 type ContainerBoardProps = {
-  containerBoard: ContainerBoardType
+  containerBoard: ContainerBoardType,
+  addContainer: any
 }
 
-export function ContainerBoard({ containerBoard }: ContainerBoardProps) {
+export function ContainerBoard({ containerBoard, addContainer }: ContainerBoardProps) {
   return (
     <div className='row'>
       <Card containerCard={false}>
         <CardHeader title={containerBoard.title}>
-          <Button button={{url: "/", type: "link", buttonName: "Adicionar", customStyle: "btn btn-dark icone-add-table"}} ></Button>
+          <Button button={{onClickFunction:addContainer, url: "", type: "action", buttonName: "Adicionar", customStyle: "btn btn-dark icone-add-table"}} ></Button>
         </CardHeader>     
         <CardBody customStyle="row d-flex justify-content-center">
           {containerBoard.containers.map((container) => {

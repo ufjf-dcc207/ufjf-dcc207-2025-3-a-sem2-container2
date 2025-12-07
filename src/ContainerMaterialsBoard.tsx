@@ -12,13 +12,14 @@ type ContainerMaterialBoardProps = {
   containerType: string
   tableHeaders: Array<string>
   handleChange: any
+  addMaterial: any
 }
 
-export function ContainerMaterialBoard({ materials, containerType, tableHeaders, handleChange }: ContainerMaterialBoardProps) {
+export function ContainerMaterialBoard({ materials, containerType, tableHeaders, handleChange, addMaterial }: ContainerMaterialBoardProps) {
   return (
     <Card containerCard={false} customStyle="col-12 mt-5">
       <CardHeader title="Materiais">
-        <Button button={{url: "/", type: "link", buttonName: "Adicionar", customStyle: "btn btn-dark icone-add-table"}} ></Button>
+        <Button button={{onClickFunction: addMaterial, url: "", type: "action", buttonName: "Adicionar", customStyle: "btn btn-dark icone-add-table"}} ></Button>
       </CardHeader>
       <CardBody customStyle="d-flex justify-content-center m-3">
         <Table table={{ headers: tableHeaders, hasActions: true }}>
