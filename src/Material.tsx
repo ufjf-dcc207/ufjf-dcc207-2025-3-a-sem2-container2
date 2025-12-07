@@ -6,7 +6,7 @@ export type MaterialType = {
   id: number,
   title: string,
   amount: number,
-  minimumStock?: number,
+  minimumStock: number,
   limitDate: string
 }
 
@@ -23,7 +23,7 @@ export function Material({ material, containerType, handleChange, removeMaterial
         <td className={containerType === "stock" ? "col-2" : "col-3"}>
           <CustomInput type={"text"} isSelect={false} inputCustomStyle="bg-transparent border-0" setName={"title"} setValue={material.title} handleChange={(e : any) => handleChange(e, material.id)}/>
         </td>
-        {containerType === "stock" && material.minimumStock ? 
+        {containerType === "stock" && material.minimumStock !== undefined ? 
           <td className="col-2">
             <CustomInput isSelect={false} type={"number"} inputCustomStyle={`bg-transparent border-0 ${material.amount < material.minimumStock ? 'text-danger' : ''}`} setName={"amount"} setValue={material.amount} handleChange={(e : any) => handleChange(e, material.id)}></CustomInput>
           </td> :
@@ -42,7 +42,6 @@ export function Material({ material, containerType, handleChange, removeMaterial
         <td>
             <div>
               <Button button={{type: "action", buttonName: "Apagar", customStyle: "ml-2 btn btn-danger float-right", onClickFunction: () => removeMaterial(material.id)}}></Button>
-              <Button button={{url: "/", type: "link", buttonName: "Editar", customStyle: "btn btn-primary float-right"}}></Button>
             </div>
         </td>
     </tr>

@@ -9,13 +9,14 @@ import { CustomInput } from "./CustomInput.tsx"
 
 
 type ContainerFormType = {
-    container: ContainerType,
-    handleChange?: any,
-    addMaterial?: any,
+    container: ContainerType
+    handleChange?: any
+    addMaterial?: any
     removeMaterial?: any
+    setCurrentContainer: any
 }
 
-export function ContainerForm({ container, handleChange, addMaterial, removeMaterial } : ContainerFormType) {
+export function ContainerForm({ container, handleChange, addMaterial, removeMaterial, setCurrentContainer } : ContainerFormType) {
     return (
         <div className='row'>
             <Card containerCard={false}>
@@ -35,8 +36,7 @@ export function ContainerForm({ container, handleChange, addMaterial, removeMate
                     </ContainerMaterialBoard>
                 </CardBody>
                 <CardFooter>
-                    <Button button={{url: "/", type: "link", buttonName: "Salvar", customStyle: "btn btn-primary icone-add-table"}} ></Button>
-                    <Button button={{url: "/", type: "link", buttonName: "Voltar", customStyle: "btn btn-dark icone-add-table"}} ></Button>
+                    <Button button={{onClickFunction: () => setCurrentContainer(-1), type: "action", buttonName: "Voltar", customStyle: "btn btn-dark icone-add-table"}} ></Button>
                 </CardFooter>
             </Card>
         </div>

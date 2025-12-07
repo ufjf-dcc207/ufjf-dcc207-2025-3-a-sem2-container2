@@ -9,14 +9,25 @@ type DashboardProps = {
   container_data: ContainerBoardType
 }
 
+type NavigationType = {
+  currentContainerId?: number,
+}
+
 function Dashboard({ container_data }: DashboardProps) {
-  const [containers, setContainers] = useState<ContainerBoardType>(container_data)
+  const [containersBoard, setContainersBoard] = useState<ContainerBoardType>(container_data)
+  const [navigation, setNavigation] = useState<NavigationType>({currentContainerId: undefined})
+
+  function setCurrentContainer(containerId ?: number){
+    const newNavigation = structuredClone(navigation);
+    newNavigation.currentContainerId = containerId
+    setNavigation(newNavigation)
+  }
 
   function handleChange(e : any, containerId : number, materialId ?: number){
     let { name, value } = e.target;
-    const newContainers = structuredClone(containers);
-    let containerIndex = newContainers.containers.findIndex(container => container.id == containerId);
-    let containerToChange = newContainers.containers[containerIndex]
+    const newContainersBoard = structuredClone(containersBoard);
+    let containerIndex = newContainersBoard.containers.findIndex(container => container.id == containerId);
+    let containerToChange = newContainersBoard.containers[containerIndex]
 
     if (materialId !== undefined){
       const materials = containerToChange?.materials
@@ -31,17 +42,16 @@ function Dashboard({ container_data }: DashboardProps) {
       containerToChange[name] = value
     }
 
-    setContainers(newContainers);
+    setContainersBoard(newContainersBoard);
   };
-
-  
+ 
   function addContainer(){
-    const newContainers = structuredClone(containers);
+    const newContainersBoard = structuredClone(containersBoard);
 
-    newContainers.currentId += 1 
+    newContainersBoard.currentId += 1 
 
     const newContainer : ContainerType = {
-      id: newContainers.currentId,
+      id: newContainersBoard.currentId,
       currentMaterialId: -1,
       title: 'título',
       type: 'stock',
@@ -49,15 +59,15 @@ function Dashboard({ container_data }: DashboardProps) {
       materials: []
     }
 
-    newContainers.containers.push(newContainer)
+    newContainersBoard.containers.push(newContainer)
 
-    setContainers(newContainers);
+    setContainersBoard(newContainersBoard);
   }
 
   function addMaterial(containerId: number){
-    const newContainers = structuredClone(containers);
-    let containerIndex = newContainers.containers.findIndex(container => container.id == containerId);
-    let containerToChange = newContainers.containers[containerIndex]
+    const newContainersBoard = structuredClone(containersBoard);
+    let containerIndex = newContainersBoard.containers.findIndex(container => container.id == containerId);
+    let containerToChange = newContainersBoard.containers[containerIndex]
 
     containerToChange.currentMaterialId += 1
 
@@ -65,40 +75,48 @@ function Dashboard({ container_data }: DashboardProps) {
       id: containerToChange.currentMaterialId,
       title: 'titulo',
       amount: 0,
-      minimumStock: containerToChange.type == 'stock' ? 1 : undefined,
+      minimumStock: 0,
       limitDate: new Date().toLocaleString('pt-BR')
     }
 
     containerToChange?.materials?.push(newMaterial)
 
-    setContainers(newContainers);
+    setContainersBoard(newContainersBoard);
   }
 
   function removeContainer(containerId: number) {
-    const newContainers = structuredClone(containers);
-    newContainers.containers = newContainers.containers.filter(container => container.id != containerId)
-    setContainers(newContainers);
+    const newContainersBoard = structuredClone(containersBoard);
+    newContainersBoard.containers = newContainersBoard.containers.filter(container => container.id != containerId)
+    setContainersBoard(newContainersBoard);
   }
 
   function removeMaterial(containerId: number, materialId: number) {
-    const newContainers = structuredClone(containers);
-    let containerIndex = newContainers.containers.findIndex(container => container.id == containerId);
-    let containerToChange = newContainers.containers[containerIndex]
+    const newContainersBoard = structuredClone(containersBoard);
+    let containerIndex = newContainersBoard.containers.findIndex(container => container.id == containerId);
+    let containerToChange = newContainersBoard.containers[containerIndex]
     containerToChange.materials = containerToChange.materials.filter(material => material.id != materialId)
-    setContainers(newContainers);
+    setContainersBoard(newContainersBoard);
   }
 
-  return (
-    <div>
-      <ContainerBoard addContainer={addContainer} removeContainer={removeContainer} containerBoard={containers}></ContainerBoard>
-      {containers.containers.map((container) => {
-          const handleChangeClosure = (e : any, materialId ?: number) => handleChange(e, container.id, materialId)
-          const addMaterialClosure = () => addMaterial(container.id)
-          const removeMaterialClosure = (materialId : number) => removeMaterial(container.id, materialId)
-          return <ContainerForm key={container.id} container={container} handleChange={handleChangeClosure} addMaterial={addMaterialClosure} removeMaterial={removeMaterialClosure}/>
-      })}
-    </div>
-  );
+  const currentContainer = containersBoard.containers.find(container => container.id == navigation.currentContainerId);
+
+  if (navigation.currentContainerId !== undefined && currentContainer !== undefined){
+    const handleChangeClosure = (e : any, materialId ?: number) => handleChange(e, currentContainer.id, materialId)
+    const addMaterialClosure = () => addMaterial(currentContainer.id)
+    const removeMaterialClosure = (materialId : number) => removeMaterial(currentContainer.id, materialId)
+    
+    return (
+      <div>
+        <ContainerForm setCurrentContainer={setCurrentContainer} key={currentContainer.id} container={currentContainer} handleChange={handleChangeClosure} addMaterial={addMaterialClosure} removeMaterial={removeMaterialClosure}/>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <ContainerBoard setCurrentContainer={setCurrentContainer} addContainer={addContainer} removeContainer={removeContainer} containerBoard={containersBoard}></ContainerBoard>
+      </div>
+    );
+  }
 }
 
 export default Dashboard

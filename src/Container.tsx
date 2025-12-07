@@ -17,6 +17,7 @@ export type ContainerType = {
 type ContainerProps = {
   container: ContainerType
   removeContainer: any
+  setCurrentContainer: any
 }
 
 function containerStatus(container : ContainerType) {
@@ -27,7 +28,7 @@ function containerStatus(container : ContainerType) {
   }
 }
 
-export function Container({ container, removeContainer }: ContainerProps) {
+export function Container({ container, removeContainer, setCurrentContainer }: ContainerProps) {
   return (
     <Card containerCard={true}>
       <CardHeader title={container.title}>
@@ -47,7 +48,7 @@ export function Container({ container, removeContainer }: ContainerProps) {
 
       <CardFooter>
         <Button button={{onClickFunction: () => removeContainer(container.id), type: "action", buttonName: "Excluir", customStyle: "btn btn-danger float-right"}} ></Button>
-        <Button button={{url: "/", type: "link", buttonName: "Visualizar", customStyle: "btn btn-primary float-right"}} ></Button>
+        <Button button={{onClickFunction: () => setCurrentContainer(container.id), type: "action", buttonName: "Visualizar", customStyle: "btn btn-primary float-right"}} ></Button>
       </CardFooter>
     </Card>
   );
