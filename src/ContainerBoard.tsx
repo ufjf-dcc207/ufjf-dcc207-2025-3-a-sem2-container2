@@ -24,7 +24,7 @@ export function ContainerBoard({ containerBoard }: ContainerBoardProps) {
         </CardHeader>     
         <CardBody customStyle="row d-flex justify-content-center">
           {containerBoard.containers.map((container) => {
-              return <Container key={container.title} container={container}/>
+              return <Container key={container.id} container={container}/>
           })}
         </CardBody>
       </Card>

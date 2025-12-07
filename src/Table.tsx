@@ -14,8 +14,8 @@ export function Table({table, children}: TableProps) {
             <table  id="example" className="w-100 table table-hover dataTable table-striped">
                 <thead className="">
                     <tr>
-                        {table.headers.map((header) => {
-                            return <th>{header}</th>
+                        {table.headers.map((header, idx) => {
+                            return <th key={idx}>{header}</th>
                         })}
                         {table.hasActions && <th></th>}
                     </tr>

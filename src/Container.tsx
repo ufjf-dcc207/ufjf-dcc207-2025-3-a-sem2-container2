@@ -6,6 +6,7 @@ import { CardHeader } from "./CardHeader.tsx"
 import type { MaterialType } from "./Material.tsx"
 
 export type ContainerType = {
+  id: number,
   title: string,
   type: string,
   info: string,

@@ -9,9 +9,10 @@ import { CardBody } from "./CardBody.tsx"
 type ContainerMaterialBoardProps = {
   materials?: Array<MaterialType>
   tableHeaders: Array<string>
+  handleChange: any
 }
 
-export function ContainerMaterialBoard({ materials, tableHeaders }: ContainerMaterialBoardProps) {
+export function ContainerMaterialBoard({ materials, tableHeaders, handleChange }: ContainerMaterialBoardProps) {
   return (
     <Card containerCard={false} customStyle="col-12 mt-5">
       <CardHeader title="Materiais">
@@ -20,7 +21,7 @@ export function ContainerMaterialBoard({ materials, tableHeaders }: ContainerMat
       <CardBody customStyle="d-flex justify-content-center m-3">
         <Table table={{ headers: tableHeaders, hasActions: true }}>
           {materials ? materials.map((material) => {
-              return <Material key={material.title} material={material}/>
+              return <Material key={material.id} material={material} handleChange={handleChange}/>
           }) : ""}
         </Table>
       </CardBody>
