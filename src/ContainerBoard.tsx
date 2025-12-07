@@ -1,13 +1,14 @@
 import { CardHeader } from "./CardHeader.tsx"
 import { Card } from "./Card.tsx"
-import type { ContainerType } from "./Container.tsx"
 import { Container } from "./Container.tsx"
 import { Button } from "./Button.tsx"
 import { CardBody } from "./CardBody.tsx"
+import { type ContainerType } from './Container';
+
 
 export type ContainerBoardType = {
-  title: string,
-  containers: Array<ContainerType>
+    title: string,
+    containers: Array<ContainerType>
 }
 
 type ContainerBoardProps = {
